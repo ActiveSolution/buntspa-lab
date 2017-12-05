@@ -1,17 +1,24 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { BuntladeStalle } from "../../models/buntladeStalle.model"
 
 @Component({
     selector: 'bunt',
     templateUrl: './bunt.component.html'
 })
-export class BuntComponent {
+export class BuntComponent implements OnInit {
+    private http: Http;
+
+    constructor(http: Http) {
+        this.http = http;
+    }
+
+    ngOnInit(): void {
+        this.http.get("/api/bunt").subscribe(result => {
+            this.buntladeStallen = result.json();
+        });
+    }
+
     public buntladeStallen: BuntladeStalle[];
 
-    constructor() {
-        this.buntladeStallen = [
-            { index: 0, adress: "Testgatan 1", typ: "Lämna", buntladeNummer: 0 },
-            { index: 1, adress: "Testgatan 2", typ: "Hämta", buntladeNummer: 1 }
-        ];
-    }
 }

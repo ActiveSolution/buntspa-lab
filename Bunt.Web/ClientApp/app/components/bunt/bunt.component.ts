@@ -22,8 +22,8 @@ export class BuntComponent implements OnInit {
     public buntladeStallen: BuntladeStalle[];
 
     public taBort(buntladeStalle: BuntladeStalle) {
-        this.http.delete("/api/bunt/" + buntladeStalle.id).subscribe(data => {
-            console.log("deleted!");
+        this.http.delete(`/api/bunt/${buntladeStalle.id}`).subscribe(data => {
+            this.buntladeStallen.splice(this.buntladeStallen.indexOf(buntladeStalle), 1);
         });
     }
 

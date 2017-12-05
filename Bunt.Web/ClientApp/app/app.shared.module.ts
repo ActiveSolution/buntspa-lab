@@ -6,13 +6,13 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
-import { BuntComponent } from './components/bunt/bunt.component';
+import { BuntListComponent } from './components/bunt/list/bunt-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        BuntComponent
+        BuntListComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +20,7 @@ import { BuntComponent } from './components/bunt/bunt.component';
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'bunt', component: BuntComponent },
+            { path: 'bunt', component: BuntListComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

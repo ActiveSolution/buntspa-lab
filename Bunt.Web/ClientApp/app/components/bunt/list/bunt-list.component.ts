@@ -1,12 +1,12 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { BuntladeStalle } from "../../models/buntladeStalle.model"
+import { BuntladeStalle } from "../../../models/buntladeStalle.model"
 
 @Component({
     selector: 'bunt',
-    templateUrl: './bunt.component.html'
+    templateUrl: './bunt-list.component.html'
 })
-export class BuntComponent implements OnInit {
+export class BuntListComponent implements OnInit {
     private http: Http;
 
     constructor(http: Http) {

@@ -26,7 +26,7 @@ namespace Bunt.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IConnectionFactory>(provider => new SqlConnectionFactory(Configuration.GetConnectionString("BuntDb")));
-            services.AddMediatR(typeof(ListaBuntladeStallenHandler));
+            services.AddMediatR(typeof(ListaBuntladeStallen.Handler));
             services.AddMvc();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Bunt.Core.Domain.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,9 @@ namespace Bunt.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ListaBuntladeStallenResponse> List()
+        public async Task<IEnumerable<ListaBuntladeStallen.BuntladeStalle>> List()
         {
-            return await _mediator.Send(new ListaBuntladeStallen());
+            return await _mediator.Send(new ListaBuntladeStallen.Query());
         }
     }
 }

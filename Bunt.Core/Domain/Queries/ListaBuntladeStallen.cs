@@ -8,38 +8,29 @@ using MediatR;
 
 namespace Bunt.Core.Domain.Queries
 {
-    public class ListaBuntladeStallen : IRequest<ListaBuntladeStallenResponse>
+    public class ListaBuntladeStallen
     {
-    }
-
-    public class ListaBuntladeStallenHandler : IRequestHandler<ListaBuntladeStallen, ListaBuntladeStallenResponse>
-    {
-        private readonly IConnectionFactory _connectionFactory;
-
-        public ListaBuntladeStallenHandler(IConnectionFactory connectionFactory)
+        public class Query : IRequest<IEnumerable<BuntladeStalle>>
         {
-            _connectionFactory = connectionFactory;
         }
 
-        public async Task<ListaBuntladeStallenResponse> Handle(ListaBuntladeStallen query, CancellationToken cancellationToken)
+        public class Handler : IRequestHandler<Query, IEnumerable<BuntladeStalle>>
         {
-            using (var conn = _connectionFactory.Create())
+            private readonly IConnectionFactory _connectionFactory;
+
+            public Handler(IConnectionFactory connectionFactory)
             {
-                var buntladeStallen = await conn.QueryAsync<ListaBuntladeStallenResponse.BuntladeStalle>("SELECT * FROM BuntladeStalle");
+                _connectionFactory = connectionFactory;
+            }
 
-                var response = new ListaBuntladeStallenResponse
+            public async Task<IEnumerable<BuntladeStalle>> Handle(Query query, CancellationToken cancellationToken)
+            {
+                using (var conn = _connectionFactory.Create())
                 {
-                    BuntladeStallen = buntladeStallen
-                };
-
-                return response;
+                    return await conn.QueryAsync<BuntladeStalle>("SELECT * FROM BuntladeStalle");
+                }
             }
         }
-    }
-
-    public class ListaBuntladeStallenResponse
-    {
-        public IEnumerable<BuntladeStalle> BuntladeStallen { get; set; }
 
         public class BuntladeStalle
         {

@@ -15,8 +15,7 @@ export class BuntComponent implements OnInit {
 
     ngOnInit(): void {
         this.http.get("/api/bunt").subscribe(data => {
-            let result = data.json();
-            this.buntladeStallen = result.buntladeStallen;
+            this.buntladeStallen = data.json();
         });
     }
 

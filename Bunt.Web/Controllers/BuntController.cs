@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Bunt.Core.Domain.Commands;
 using Bunt.Core.Domain.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +22,12 @@ namespace Bunt.Web.Controllers
         public async Task<IEnumerable<ListaBuntladeStallen.BuntladeStalle>> List()
         {
             return await _mediator.Send(new ListaBuntladeStallen.Query());
+        }
+
+        [HttpDelete("{id}")]
+        public async Task TaBort(Guid id)
+        {
+            await _mediator.Send(new TaBortBuntladeStalle.Command { Id = id });
         }
     }
 }

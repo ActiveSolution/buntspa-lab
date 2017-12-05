@@ -1,1 +1,26 @@
 ﻿<h1>Redigera buntlådeställen</h1>
+
+<button class="btn">Lägg till</button>
+<button class="btn">Flytta</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Adress</th>
+            <th>Typ</th>
+            <th>Buntlådenummer</th>
+            <th></th>
+        </tr>
+    <tbody>
+        <tr *ngFor="let buntladeStalle of buntladeStallen">
+            <td>{{buntladeStalle.index}}</td>
+            <td>{{buntladeStalle.adress}}</td>
+            <td>{{buntladeStalle.typ}}</td>
+            <td>{{buntladeStalle.buntladeNummer}}</td>
+            <td>
+                <button type="button" class="btn">Ta bort</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

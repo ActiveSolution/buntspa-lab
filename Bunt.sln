@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunt.Web", "Bunt.Web\Bunt.Web.csproj", "{18DD5609-2170-47A9-ACCA-561EAE14D856}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bunt.Web", "Bunt.Web\Bunt.Web.csproj", "{18DD5609-2170-47A9-ACCA-561EAE14D856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunt.Core", "Bunt.Core\Bunt.Core.csproj", "{3C8D8E0E-6CB6-4AA2-A242-EE85A3F4A991}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{18DD5609-2170-47A9-ACCA-561EAE14D856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18DD5609-2170-47A9-ACCA-561EAE14D856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18DD5609-2170-47A9-ACCA-561EAE14D856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C8D8E0E-6CB6-4AA2-A242-EE85A3F4A991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C8D8E0E-6CB6-4AA2-A242-EE85A3F4A991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C8D8E0E-6CB6-4AA2-A242-EE85A3F4A991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8D8E0E-6CB6-4AA2-A242-EE85A3F4A991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

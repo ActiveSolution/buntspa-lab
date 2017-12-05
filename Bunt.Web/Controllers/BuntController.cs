@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
+using Bunt.Core.Domain.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bunt.Web.Controllers
@@ -6,34 +8,17 @@ namespace Bunt.Web.Controllers
     [Route("api/bunt")]
     public class BuntController : Controller
     {
-        [HttpGet]
-        public IEnumerable<BuntladeStalle> List()
-        {
-            return new List<BuntladeStalle>
-            {
-                new BuntladeStalle
-                {
-                    Index = 0,
-                    Adress = "Testgatan 3",
-                    Typ = "Lämna",
-                    BuntladeNummer = 0
-                },
-                new BuntladeStalle
-                {
-                    Index = 1,
-                    Adress = "Testgatan 4",
-                    Typ = "Hämta",
-                    BuntladeNummer = 1
-                }
-            };
-        }
-    }
+        private readonly IMediator _mediator;
 
-    public class BuntladeStalle
-    {
-        public int Index { get; set; }
-        public string Adress { get; set; }
-        public string Typ { get; set; }
-        public int? BuntladeNummer { get; set; }
+        public BuntController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ListaBuntladeStallenResponse> List()
+        {
+            return await _mediator.Send(new ListaBuntladeStallen());
+        }
     }
 }

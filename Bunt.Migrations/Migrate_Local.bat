@@ -1,0 +1,1 @@
+C:\Users\%USERNAME%\.nuget\packages\FluentMigrator\1.6.2\tools\Migrate.exe --conn "Server=.;Database=Bunt;Integrated Security=True;" --assembly "bin\Debug\netstandard2.0\Bunt.Migrations.dll" --db SqlServer2014

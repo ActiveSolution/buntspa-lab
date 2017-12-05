@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Bunt.Core.Infrastructure;
@@ -42,6 +43,7 @@ namespace Bunt.Core.Domain.Queries
 
         public class BuntladeStalle
         {
+            public Guid Id { get; set; }
             public int Index { get; set; }
             public string Adress { get; set; }
             public string Typ { get; set; }

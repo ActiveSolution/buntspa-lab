@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Bunt.Core.Infrastructure;
+using Dapper;
 using MediatR;
 
 namespace Bunt.Core.Domain.Queries
@@ -11,31 +13,26 @@ namespace Bunt.Core.Domain.Queries
 
     public class ListaBuntladeStallenHandler : IRequestHandler<ListaBuntladeStallen, ListaBuntladeStallenResponse>
     {
-        public Task<ListaBuntladeStallenResponse> Handle(ListaBuntladeStallen query,
-            CancellationToken cancellationToken)
-        {
-            var response = new ListaBuntladeStallenResponse
-            {
-                BuntladeStallen = new List<ListaBuntladeStallenResponse.BuntladeStalle>
-                {
-                    new ListaBuntladeStallenResponse.BuntladeStalle
-                    {
-                        Index = 0,
-                        Adress = "Testgatan 3",
-                        Typ = "Lämna",
-                        BuntladeNummer = 0
-                    },
-                    new ListaBuntladeStallenResponse.BuntladeStalle
-                    {
-                        Index = 1,
-                        Adress = "Testgatan 4",
-                        Typ = "Hämta",
-                        BuntladeNummer = 1
-                    }
-                }
-            };
+        private readonly IConnectionFactory _connectionFactory;
 
-            return Task.FromResult(response);
+        public ListaBuntladeStallenHandler(IConnectionFactory connectionFactory)
+        {
+            _connectionFactory = connectionFactory;
+        }
+
+        public async Task<ListaBuntladeStallenResponse> Handle(ListaBuntladeStallen query, CancellationToken cancellationToken)
+        {
+            using (var conn = _connectionFactory.Create())
+            {
+                var buntladeStallen = await conn.QueryAsync<ListaBuntladeStallenResponse.BuntladeStalle>("SELECT * FROM BuntladeStalle");
+
+                var response = new ListaBuntladeStallenResponse
+                {
+                    BuntladeStallen = buntladeStallen
+                };
+
+                return response;
+            }
         }
     }
 

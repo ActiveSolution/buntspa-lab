@@ -31,7 +31,8 @@ namespace Bunt.Core.Domain.Commands
 
                 if (buntladeStalle == null)
                 {
-                    buntladeStalle = new BuntladeStalle(command.Id, command.Adress, command.Typ);
+                    var lastIndex = await _db.BuntladeStallen.MaxAsync(b => b.Index, cancellationToken);
+                    buntladeStalle = new BuntladeStalle(command.Id, command.Adress, command.Typ, lastIndex + 1);
                     _db.Add(buntladeStalle);
                 }
                 else

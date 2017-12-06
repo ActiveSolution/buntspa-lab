@@ -27,7 +27,7 @@ namespace Bunt.Core.Domain.Queries
             {
                 using (var conn = _connectionFactory.Create())
                 {
-                    return await conn.QueryAsync<BuntladeStalle>("SELECT * FROM BuntladeStalle");
+                    return await conn.QueryAsync<BuntladeStalle>("SELECT * FROM BuntladeStalle ORDER BY [Index]");
                 }
             }
         }

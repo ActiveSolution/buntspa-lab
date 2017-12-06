@@ -14,12 +14,12 @@ namespace Bunt.Core.Domain.Model
         {
         }
 
-        public BuntladeStalle(Guid id, string adress, int typ)
+        public BuntladeStalle(Guid id, string adress, int typ, int index)
         {
             Id = id;
             Adress = adress;
             Typ = typ;
-            Index = 0;
+            Index = index;
             Buntladenummer = 0;
         }
 

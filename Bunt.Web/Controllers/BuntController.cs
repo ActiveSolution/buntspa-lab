@@ -29,5 +29,12 @@ namespace Bunt.Web.Controllers
         {
             await _mediator.Send(new TaBortBuntladeStalle.Command { Id = id });
         }
+
+        [HttpPut("{id}")]
+        public async Task Spara(Guid id, [FromBody]SparaBuntladeStalle.Command command)
+        {
+            command.Id = id;
+            await _mediator.Send(command);
+        }
     }
 }

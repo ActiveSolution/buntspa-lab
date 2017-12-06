@@ -2,6 +2,7 @@
 import { Http } from '@angular/http';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { v4 as uuid } from 'uuid';
 
 import { BuntladeStalle } from "../../../models/buntladeStalle.model"
 
@@ -39,6 +40,10 @@ export class BuntListComponent implements OnInit {
     redigera(buntladeStalle: BuntladeStalle) {
         this.selectedBuntladeStalle = buntladeStalle;
         this.modalRef = this.modalService.show(this.editModalTemplate);
+    }
+
+    laggTill() {
+        this.redigera({ id: uuid(), index: 0, adress: "", typ: "1", buntladeNummer: 0 });
     }
 
     avbrytRedigera() {

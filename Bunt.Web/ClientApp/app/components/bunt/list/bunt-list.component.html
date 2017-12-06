@@ -1,6 +1,6 @@
 ﻿<h1>Redigera buntlådeställen</h1>
 
-<button class="btn">Lägg till</button>
+<button class="btn" (click)="laggTill()">Lägg till</button>
 <button class="btn">Flytta</button>
 
 <table class="table">
@@ -26,7 +26,7 @@
     </tbody>
 </table>
 
-<template #editModal>
+<ng-template #editModal>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Redigera buntlådeställe</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="avbrytRedigera()">
@@ -52,4 +52,4 @@
         <button type="button" class="btn" data-dismiss="modal" (click)="avbrytRedigera()">Avbryt</button>
         <button type="button" class="btn btn-primary" (click)="spara()">Spara</button>
     </div>
-</template>
+</ng-template>

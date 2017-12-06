@@ -25,9 +25,9 @@ namespace Bunt.Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task TaBort(Guid id)
+        public async Task TaBort(TaBortBuntladeStalle.Command command)
         {
-            await _mediator.Send(new TaBortBuntladeStalle.Command { Id = id });
+            await _mediator.Send(command);
         }
 
         [HttpPut("{id}")]

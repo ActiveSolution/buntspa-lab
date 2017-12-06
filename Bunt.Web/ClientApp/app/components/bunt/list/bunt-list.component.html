@@ -1,7 +1,6 @@
 ﻿<h1>Redigera buntlådeställen</h1>
 
 <button class="btn" (click)="laggTill()">Lägg till</button>
-<button class="btn">Flytta</button>
 
 <table class="table">
     <thead>
@@ -21,6 +20,12 @@
             <td>
                 <button type="button" class="btn" (click)="redigera(buntladeStalle)">Redigera</button>
                 <button type="button" class="btn" (click)="taBort(buntladeStalle)">Ta bort</button>
+                <button type="button" class="btn">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </button>
+                <button type="button" class="btn">
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </button>
             </td>
         </tr>
     </tbody>

@@ -20,9 +20,7 @@ export class BuntListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.http.get("/api/bunt").subscribe(data => {
-            this.buntladeStallen = data.json();
-        });
+        this.reload();
     }
 
     @ViewChild('editModal') editModalTemplate: TemplateRef<any>;
@@ -30,6 +28,12 @@ export class BuntListComponent implements OnInit {
     modalRef: BsModalRef;
     buntladeStallen: BuntladeStalle[];
     selectedBuntladeStalle: BuntladeStalle | undefined;
+
+    private reload() {
+        this.http.get("/api/bunt").subscribe(data => {
+            this.buntladeStallen = data.json();
+        });
+    }
 
     taBort(buntladeStalle: BuntladeStalle) {
         this.http.delete(`/api/bunt/${buntladeStalle.id}`).subscribe(data => {
@@ -59,6 +63,7 @@ export class BuntListComponent implements OnInit {
                     typ: this.selectedBuntladeStalle.typ
                 }).subscribe(() => {
                     this.avbrytRedigera();
+                    this.reload();
             });
         }
     }

@@ -19,8 +19,37 @@
             <td>{{buntladeStalle.typ}}</td>
             <td>{{buntladeStalle.buntladeNummer}}</td>
             <td>
+                <button type="button" class="btn" (click)="redigera(buntladeStalle)">Redigera</button>
                 <button type="button" class="btn" (click)="taBort(buntladeStalle)">Ta bort</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<template #editModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Redigera buntlådeställe</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="avbrytRedigera()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form *ngIf="selectedBuntladeStalle">
+            <div class="form-group">
+                <label class="form-control-label">Adress:</label>
+                <input [(ngModel)]="selectedBuntladeStalle.adress" class="form-control" name="adress">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Typ:</label>
+                <select [(ngModel)]="selectedBuntladeStalle.typ" class="form-control" name="typ">
+                    <option value="1">Lämna</option>
+                    <option value="2">Hämta</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" (click)="avbrytRedigera()">Avbryt</button>
+        <button type="button" class="btn btn-primary" (click)="spara()">Spara</button>
+    </div>
+</template>

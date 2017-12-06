@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -22,7 +23,8 @@ import { BuntListComponent } from './components/bunt/list/bunt-list.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'bunt', component: BuntListComponent },
             { path: '**', redirectTo: 'home' }
-        ])
+        ]),
+        ModalModule.forRoot()
     ]
 })
 export class AppModuleShared {

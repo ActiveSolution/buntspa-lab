@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Bunt.Core.Infrastructure;
 using Dapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bunt.Core.Domain.Commands
 {
@@ -16,19 +18,28 @@ namespace Bunt.Core.Domain.Commands
 
         public class Handler : IRequestHandler<Command>
         {
-            private readonly IConnectionFactory _connectionFactory;
+            private readonly BuntDbContext _db;
 
-            public Handler(IConnectionFactory connectionFactory)
+            public Handler(BuntDbContext db)
             {
-                _connectionFactory = connectionFactory;
+                _db = db;
             }
 
             public async Task Handle(Command command, CancellationToken cancellationToken)
             {
-                using (var conn = _connectionFactory.Create())
+                var buntladeStalle = await _db.BuntladeStallen.SingleOrDefaultAsync(b => b.Id == command.Id, cancellationToken);
+
+                if (buntladeStalle != null)
                 {
-                    await conn.ExecuteAsync("DELETE BuntladeStalle WHERE Id = @Id", command);
+                    _db.BuntladeStallen.Remove(buntladeStalle);
+
+                    foreach(var stalle in _db.BuntladeStallen.Where(b => b.Index > buntladeStalle.Index))
+                    {
+                        stalle.Omsortera(stalle.Index - 1);
+                    }
                 }
+
+                await _db.SaveChangesAsync(cancellationToken);
             }
         }
     }

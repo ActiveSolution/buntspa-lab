@@ -28,5 +28,10 @@ namespace Bunt.Core.Domain.Model
             Adress = adress;
             Typ = typ;
         }
+
+        public void Omsortera(int newIndex)
+        {
+            Index = newIndex;
+        }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Bunt.Core.Domain.Model;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Extensions.Internal;
 
 namespace Bunt.Core.Domain.Commands
 {
@@ -31,7 +33,7 @@ namespace Bunt.Core.Domain.Commands
 
                 if (buntladeStalle == null)
                 {
-                    var lastIndex = await _db.BuntladeStallen.MaxAsync(b => b.Index, cancellationToken);
+                    var lastIndex = await _db.BuntladeStallen.Select(b => b.Index).DefaultIfEmpty(0).MaxAsync(index => index);
                     buntladeStalle = new BuntladeStalle(command.Id, command.Adress, command.Typ, lastIndex + 1);
                     _db.Add(buntladeStalle);
                 }
